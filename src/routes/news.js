@@ -1,19 +1,15 @@
 const express = require("express");
-const fetch = require("node-fetch");
-
 const router = express.Router();
 
-router.get("/", async (req, res) => {
-  const query = req.query.q || "football";
-  try {
-    const apiKey = process.env.NEWSAPI_KEY;
-    const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
-    const response = await fetch(url);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+// Example route
+router.get("/", (req, res) => {
+  res.json({
+    message: "Latest sports news",
+    data: [
+      { id: 1, title: "Team A won the championship" },
+      { id: 2, title: "Player B transferred to Team C" },
+    ],
+  });
 });
 
 module.exports = router;
