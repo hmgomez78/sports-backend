@@ -1,10 +1,10 @@
-import express from "express";
-import fetch from "node-fetch";
+const express = require("express");
+const fetch = require("node-fetch");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const query = req.query.query || "football";
+  const query = req.query.q || "football";
   try {
     const apiKey = process.env.NEWSAPI_KEY;
     const url = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
@@ -16,4 +16,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
